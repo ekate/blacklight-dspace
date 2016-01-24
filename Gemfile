@@ -10,11 +10,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Use mysql as the database for Active Record
 #gem 'mysql2'
-gem 'pg'
 gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 5.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -23,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+#gem 'therubyracer', platforms: :ruby
 
 # Required for RestClient
 gem 'mime-types'
@@ -33,6 +32,7 @@ gem 'netrc'
 
 # Required for RestClient
 gem 'rdoc'
+
 
 # Use rest-client to get json from REST API
 #gem 'rest_client'

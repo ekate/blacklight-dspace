@@ -52,9 +52,9 @@ GEM
       nokogiri (~> 1.6)
       rails (>= 3.2.6, < 5)
       rsolr (~> 1.0.11)
-    bootstrap-sass (3.3.5)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -99,7 +99,6 @@ GEM
     netrc (0.11.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    pg (0.18.4)
     polyglot (0.3.5)
     rack (1.5.5)
     rack-test (0.6.3)
@@ -130,12 +129,13 @@ GEM
     ruby-debug-ide (0.4.33)
       rake (>= 0.8.1)
     safe_yaml (1.0.4)
-    sass (3.2.19)
-    sass-rails (4.0.5)
+    sass (3.4.21)
+    sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -183,7 +183,6 @@ DEPENDENCIES
   json
   mime-types
   netrc
-  pg
   rails (= 4.0.3)
   rails_12factor
   rails_serve_static_assets
@@ -191,7 +190,7 @@ DEPENDENCIES
   rdoc
   rsolr (~> 1.0.6)
   ruby-debug-ide (~> 0.4.22)
-  sass-rails (~> 4.0.0)
+  sass-rails (~> 5.0.0)
   sdoc
   simple_form (~> 3.1.0.rc2)
   sqlite3

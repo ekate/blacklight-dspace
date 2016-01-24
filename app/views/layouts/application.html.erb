@@ -4,7 +4,7 @@
     <title><%= $title %></title>
     <%= yield :index %>
     <%= yield :slide_menu %>
-    <%=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'ruby_fav.ico' %>
@@ -44,8 +44,6 @@
 <hr>
 <footer>
     <ul class="list-inline text-center text-muted">
-        <li>© <%=link_to 'Mike Kalvas', 'https://github.com/mkalvas' %> 2014</li>
-        <li>•</li>
         <li><%= link_to 'About', about_path %></li>
         <li>•</li>
         <li><%= link_to 'Contact', contact_path %></li>
