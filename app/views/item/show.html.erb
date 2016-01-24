@@ -1,0 +1,98 @@
+<div class="jumbotron">
+
+
+    <!-- TODO bug check on rest code item/59898 gives duplicate parent stuff in source json -->
+    <div class="row">
+        <div class="col-md-6">
+            <% if !@item.parentCommunityList.nil? and @item.parentCommunityList.size > 0 %>
+                <% i = @item.parentCommunityList.size %>
+                <h3>Parent Communities</h3>
+                <% while i > 0 %>
+                    <li><%= link_to "#{@item.parentCommunityList[i - 1]['name']}", community_path(:id => "#{@item.parentCommunityList[i - 1]['id']}")%></li>
+                    <% i -= 1 %>
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="col-md-6">
+            <% if !@item.parentCollectionList.nil? and @item.parentCollectionList.size > 0 %>
+                <% i = @item.parentCollectionList.size %>
+                <h3>Parent Collections</h3>
+                <% while i > 0 %>
+                    <li><%= link_to "#{@item.parentCollectionList[i - 1]['name']}", collection_path(:id => "#{@item.parentCollectionList[i - 1]['id']}")%></li>
+                    <% i -= 1 %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <% $title = 'Single Item' %>
+    <h1><%= @item.name %></h1>
+
+    <% unless @item.handle.nil? %>
+        <p>Handle: <a href=<%= 'http://hdl.handle.net/' + @item.handle %>><%= 'http://hdl.handle.net/' + @item.handle %></a></p>
+    <% end %>
+
+    <% if @item.archived %>
+        <p>Archival Status: In archive</p>
+    <% elsif !@item.archived %>
+        <p>Archival Status: Not yet in archive</p>
+    <% else  %>
+        <p>Archival Status: Unknown</p>
+    <% end %>
+
+    <% if @item.withdrawn.equal?('y') %>
+        <p>Item withdrawal status: Withdrawn</p>
+    <% end %>
+    <% #$base_rest_url=Rails.application.config.api_server_url %>
+  <% $base_rest_url="https://msdlib.home.nyu.edu/rest" %>
+    <% @bitstreams=Item.bitstreams(params[:id]) %>
+        <% @bitstreams.each do |b|%>
+            <div class="media">
+                <a class="pull-left" href=<%= $base_rest_url + "#{b['retrieveLink'].gsub('//', '/')}" %>>
+                    <% if b['mimeType'] == 'image/jpeg' %>
+                        <img class="media-object image-rounded" style="max-width: 400px;" src=<%= $base_rest_url + "#{b['retrieveLink'].gsub('/rest/', '')}" %>/>
+                    <% elsif b['mimeType'] == 'application/pdf' %>
+                        <img class="media-object image-rounded" src=<%= asset_path('pdf_file.gif') %>/>
+                    <% elsif b['mimeType'] == 'text/plain' %>
+                        <img class="media-object image-rounded" src=<%= asset_path('text_file.png') %>/>
+                    <% elsif b['mimeType'] == 'text/html; charset=utf-8' or b['mimeType'] == 'text/html'%>
+                        <img class="media-object image-rounded" src=<%= asset_path('html_file.png') %>/>
+                    <% elsif b['mimeType'] == 'application/rdf+xml; charset=utf-8' %>
+                        <img class="media-object image-rounded" src=<%= asset_path('rdfxml_file.png') %>/>
+                    <% else %>
+                        <img class="media-object image-rounded" src=<%= asset_path('kitten_placeholder.jpg') %>/>
+                    <% end %>
+                </a>
+                <div class="media-heading">
+
+                    <b><%= link_to "#{b['name']}", $base_rest_url + "#{b['retrieveLink'].gsub('/rest/', '')}" %></b>
+                </div>
+                <div class="media-body">
+                    <% if b['description'].to_s.size > 0 %>
+                        <%= b['description'].to_s %>
+                    <% end %>
+                    Size: <%= b['sizeBytes'] / 1000.0 %> kB
+                </div>
+
+
+            </div>
+        <% end %>
+        <hr style="background-color: #FFFFFF; height: 2px;"/>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionTwo" href="#collapseTwo">View MetaData</a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <pre><%= @item['metadata'].html_safe %></pre>
+            </div>
+        </div>
+    </div>
+
+    <%= render partial: 'shared/data_foot' %>
+
+</div>

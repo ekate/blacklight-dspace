@@ -1,0 +1,84 @@
+<div class="jumbotron">
+
+    <div class="row">
+        <div class="col-md-6">
+            <% if !@community.parentCommunity.nil? %>
+             <% #and @community.parentCommunity.size > 0 %>
+                <p>Parent Communities</p>
+                <li><%= link_to "#{@community.parentCommunity['name']}", community_path(:id => "#{@community.parentCommunity['id']}")%></li>
+            <% end %>
+        </div>
+    </div>
+
+    <% $title = 'Community' %>
+    <h1><%= @community.name %></h1>
+
+    <% unless @community.logo.nil? %>
+        <img src=<%= $base_rest_url + @community.logo['retrieveLink'].to_s %>/>
+    <% end %>
+
+    <% unless @community.copyrightText.size < 1 %>
+        <h2>Copyright Text</h2>
+        <p><%= @community.copyrightText %></p>
+    <% end %>
+
+    <% unless @community.countItems.nil? %>
+        <h2>Count Items: <%= @community.countItems %></h2>
+    <% end %>
+
+    <% unless @community.handle.nil? %>
+        <p>Handle: <a href=<%= 'http://hdl.handle.net/' + @community.handle %>><%= 'http://hdl.handle.net/' + @community.handle %></a></p>
+    <% end %>
+
+    <% unless @community.introductoryText.size < 1 %>
+        <h2>Introductory Text</h2>
+        <p><%= strip_tags(@community.introductoryText) %></p>
+    <% end %>
+
+    <% unless @community.shortDescription.nil? %>
+        <h2>Short Description</h2>
+        <p><%= strip_tags(@community.shortDescription) %></p>
+    <% end %>
+
+    <% unless @community.sidebarText.size < 1 %>
+        <h2>Sidebar Text</h2>
+        <%= @community.sidebarText.html_safe %>
+    <% end %>
+
+  <% @subcommunities=Community.subcommunities(params[:id]) %>
+    <% unless @subcommunities.empty? %>
+        <h2>Communities within this Community</h2>
+        <ul>
+            <% @subcommunities.each do |subcommunity| %>
+                <li>
+                    <%= link_to "#{subcommunity['name']}", community_path(:id => "#{subcommunity['id']}") %>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <% @collections=Community.collections(params[:id]) %>
+    <% unless @collections.empty? %>
+        <h2>Collections within this Community</h2>
+        <ul>
+            <% @collections.each do |collection|%>
+                <li>
+                    <%= link_to "#{collection['name']}", collection_path(:id => "#{collection['id']}") %>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <%= render partial: 'shared/data_foot' %>
+   <div>
+  <%= simple_form_for @community, :url=>destroy_url, :method => "delete" do |f| %>
+        <%= f.submit action_name="delete" %>
+        <%= f.hidden_field "id" %>
+  <% end %>
+  <%= simple_form_for @community, :url=>edit_community_url, :method => "post" do |f| %>
+  <%= f.submit action_name="edit" %>
+  <%= f.hidden_field "id" %>
+  <% end %>
+     </div>
+</div>
+

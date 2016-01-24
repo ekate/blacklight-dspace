@@ -1,0 +1,48 @@
+<div class="jumbotron">
+
+    <div class="row">
+        <div class="col-md-6">
+            <% if !@collection.parentCommunityList.nil? and @collection.parentCommunityList.size > 0 %>
+                <% i = @collection.parentCommunityList.size %>
+                <p>Parent Communities</p>
+                <% while i > 0 %>
+                    <li><%= link_to "#{@collection.parentCommunityList[i - 1]['name']}", community_path(:id => "#{@collection.parentCommunityList[i - 1]['id']}")%></li>
+                    <% i -= 1 %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <% $title = 'Collection' %>
+    <h1><%= @collection.name %></h1>
+
+    <% unless @collection.logo.nil? %>
+        <img src=<%= $base_rest_url + @collection.logo['retrieveLink'].to_s %>>
+    <% end %>
+
+    <% unless @collection.handle.nil? %>
+        <p>Handle: <a href=<%= 'http://hdl.handle.net/' + @collection.handle %>><%= 'http://hdl.handle.net/' + @collection.handle %></a></p>
+    <% end %>
+
+
+    <% unless @collection.shortDescription.nil? %>
+        <h2>Short Description</h2>
+        <p><%= strip_tags(@collection.shortDescription) %></p>
+    <% end %>
+
+    <% unless @collection.numberItems.nil? %>
+        <h2>This collection has <%= @collection.numberItems %> items</h2>
+    <% end %>
+
+  <% @items=Collection.items(params[:id]) %>
+  <% unless @items.empty? %>
+      <% @items.each do |item| %>
+                <li>
+                    <%= link_to "#{item['name']}", item_path(:id => "#{item['id']}") %>
+                </li>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <%= render partial: 'shared/data_foot' %>
+</div>

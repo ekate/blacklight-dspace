@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= $title %></title>
+    <%= yield :index %>
+    <%= yield :slide_menu %>
+    <%=stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'ruby_fav.ico' %>
+    <style>
+        body {
+
+            padding-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span><%= link_to 'Blacklight DSpace Project', root_path, :class => "navbar-brand" %></span>
+        </div>
+        <div class="navbar-collapse collapse" data-no-turbolink>
+            <ul class="nav navbar-nav">
+                <li><%= link_to 'About', about_path %></li>
+                <li><%= link_to 'Contact', contact_path %></li>
+            </ul>
+            <p class=""><a class="navbar-text navbar-right" href="login">Login</a></p>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container"><%= yield %></div>
+
+<hr>
+<footer>
+    <ul class="list-inline text-center text-muted">
+        <li>© <%=link_to 'Mike Kalvas', 'https://github.com/mkalvas' %> 2014</li>
+        <li>•</li>
+        <li><%= link_to 'About', about_path %></li>
+        <li>•</li>
+        <li><%= link_to 'Contact', contact_path %></li>
+        <li>•</li>
+        <li><a href="http://github.com/peterdietz/dspace-rest-rails">GitHub</a></li>
+    </ul>
+</footer>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+</body>
+</html>
