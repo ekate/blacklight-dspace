@@ -1,0 +1,89 @@
+.ajax_form
+{
+  margin-bottom: 0;
+}
+
+#librarian_view
+{
+	left:-17%;
+	text-align:left;
+	top:10%;
+	width:700px;
+}
+
+
+#sidebar form {
+  margin: 0;
+}
+
+
+.pagination {
+  text-align: center ;
+}
+
+.dl-horizontal
+{
+  dd {
+
+    &:after {
+      clear: none;
+    }
+  }
+}
+
+.dl-invert {
+  dt {
+    font-weight: normal;
+  }
+}
+
+label.toggle_bookmark
+{
+	font-weight: inherit;
+	min-width: 8.5em;
+}
+
+#sortAndPerPage, .pagination-search-widgets {
+  border-bottom: 1px;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+
+
+#sortAndPerPage .dropdown-toggle {
+  cursor: pointer;
+}
+
+.no-js #sortAndPerPage {
+  & {
+    @extend .clearfix;
+  }
+  .dropdown-menu {
+    background: none;
+    box-shadow: none;
+    border: none;
+    position: relative;
+    display: block;
+    float: none;
+  }
+
+}
+
+.document-thumbnail {
+  float: right;
+}
+
+.view-type {
+  display: inline-block;
+
+  .caption {
+    @extend .sr-only;
+  }
+}
+
+
+.search-input-group {
+  width: 80%;
+}
+

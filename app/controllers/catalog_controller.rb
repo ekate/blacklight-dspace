@@ -58,13 +58,12 @@ class CatalogController < ApplicationController
     #
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
-    config.add_facet_field 'format', :label => 'Format'
-    config.add_facet_field 'dc.title', :label => 'Title'
+    config.add_facet_field 'dc.contributor.author', :label => 'Author', :limit => 20
     config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
-    config.add_facet_field 'dc.subject', :label => 'Topic', :limit => true 
+    config.add_facet_field 'dc.subject.', :label => 'Topic', :limit => true
     config.add_facet_field 'dc.language', :label => 'Language', :limit => true
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number'
-    config.add_facet_field 'subject_geo_facet', :label => 'Region'
+    config.add_facet_field 'dc.coverage.spatial', :label => 'Region'
     config.add_facet_field 'subject_era_facet', :label => 'Era'
 
     config.add_facet_field 'example_pivot_field', :label => 'Pivot Field', :pivot => ['format', 'language_facet']

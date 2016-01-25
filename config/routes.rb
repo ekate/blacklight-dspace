@@ -2,7 +2,9 @@ DspaceRestRuby::Application.routes.draw do
 
   root to: "catalog#index"
   blacklight_for :catalog
+
   get "login/new"
+
   get '/communities', to: 'home#index'
 
   get '/about', to: 'home#about'
