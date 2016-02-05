@@ -59,8 +59,8 @@ class CatalogController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
     config.add_facet_field 'dc.contributor.author', :label => 'Author', :limit => 20
-    config.add_facet_field 'pub_date', :label => 'Publication Year', :single => true
-    config.add_facet_field 'dc.subject.', :label => 'Topic', :limit => true
+    config.add_facet_field 'dc.date.issued', :label => 'Publication Date', :limit=> 20
+    #config.add_facet_field 'dc.subject', :label => 'Topic', :limit => true
     config.add_facet_field 'dc.language', :label => 'Language', :limit => true
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number'
     config.add_facet_field 'dc.coverage.spatial', :label => 'Region'
@@ -82,9 +82,8 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display 
-    config.add_index_field 'title_display', :label => 'Title'
-    config.add_index_field 'title_vern_display', :label => 'Title'
-    config.add_index_field 'author_display', :label => 'Author'
+    config.add_index_field 'dc.title', :label => 'Title'
+    config.add_index_field 'dc.contributor.author', :label => 'Author'
     config.add_index_field 'author_vern_display', :label => 'Author'
     config.add_index_field 'format', :label => 'Format'
     config.add_index_field 'language_facet', :label => 'Language'
@@ -94,11 +93,11 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display 
-    config.add_show_field 'title_display', :label => 'Title'
+    config.add_show_field 'dc.title', :label => 'Title'
     config.add_show_field 'title_vern_display', :label => 'Title'
     config.add_show_field 'subtitle_display', :label => 'Subtitle'
     config.add_show_field 'subtitle_vern_display', :label => 'Subtitle'
-    config.add_show_field 'author_display', :label => 'Author'
+    config.add_show_field 'dc.contributor.author', :label => 'Author'
     config.add_show_field 'author_vern_display', :label => 'Author'
     config.add_show_field 'format', :label => 'Format'
     config.add_show_field 'url_fulltext_display', :label => 'URL'
